@@ -25,7 +25,7 @@ import tput # .colorize, .decolorize
 
 N_PRECEDING_NEWLINES = 2
 
-USERNAME_HOSTNAME_COLOR = "GREEN"
+USERNAME_HOSTNAME_COLOR = "YELLOW"
 USERNAME_HOSTNAME_BOLD = True
 
 PWD_COLOR_MODULO = 8 # hash pwd.basename into 0 thru 7 inclusive
