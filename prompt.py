@@ -34,8 +34,9 @@ PWD_BOLD = True
 LS_DIRS_COLOR = "WHITE"
 LS_DIRS_BOLD = False
 
-DOLLAR_SIGN_COLOR = "GREEN"
+DOLLAR_SIGN_COLOR = 53
 DOLLAR_SIGN_BOLD = True
+
 
 ###
 # CODE
@@ -53,6 +54,49 @@ tput.decolorize()
 
 for i in range(0, N_PRECEDING_NEWLINES):
     print ""
+
+##
+# pwd. color based on the basename
+##
+
+pwd = os.getcwd()
+basename = os.path.basename(pwd)
+
+digest_hex_string = hashlib.sha256(basename).hexdigest()
+digest_int = int(digest_hex_string, 16)
+
+pwd_color = digest_int % PWD_COLOR_MODULO
+
+tput.colorize(fg=pwd_color, bold=PWD_BOLD)
+print pwd
+
+##
+# list of subdirs of the pwd
+##
+
+tput.colorize(fg=LS_DIRS_COLOR, bold=LS_DIRS_BOLD)
+
+subdirs = []
+
+for elem in os.listdir(pwd):
+    full_path_elem = os.path.join(pwd, elem)
+
+    if os.path.isdir(full_path_elem):
+        subdirs += [elem + '/']
+
+subdirs.sort()
+
+for subdir in subdirs:
+    print subdir,
+
+print ""
+
+##
+# dollar sign (or some symbol) and space
+##
+
+tput.colorize(fg=DOLLAR_SIGN_COLOR, bold=DOLLAR_SIGN_BOLD)
+print '$'
 
 ##
 # username
@@ -81,43 +125,7 @@ if hostname[-len(DOT_STANFORD_DOT_EDU):] == DOT_STANFORD_DOT_EDU:
     hostname = hostname[0:-len(DOT_STANFORD_DOT_EDU)]
 
 tput.colorize(fg=USERNAME_HOSTNAME_COLOR, bold=USERNAME_HOSTNAME_BOLD)
-print hostname, ':'
-
-##
-# pwd. color based on the basename
-##
-
-pwd = os.getcwd()
-basename = os.path.basename(pwd)
-
-digest_hex_string = hashlib.sha256(basename).hexdigest()
-digest_int = int(digest_hex_string, 16)
-
-pwd_color = digest_int % PWD_COLOR_MODULO
-
-tput.colorize(fg=pwd_color, bold=PWD_BOLD)
-print pwd
-
-##
-# list of subdirs of the pwd
-##
-
-tput.colorize(fg=LS_DIRS_COLOR, bold=LS_DIRS_BOLD)
-
-for elem in os.listdir(pwd):
-    full_path_elem = os.path.join(pwd, elem)
-
-    if os.path.isdir(full_path_elem):
-        print elem + '/',
-
-print ""
-
-##
-# dollar sign (or some symbol) and space
-##
-
-tput.colorize(fg=DOLLAR_SIGN_COLOR, bold=DOLLAR_SIGN_BOLD)
-print '> '
+print hostname
 
 ##
 # finish by decolorizing
