@@ -11,7 +11,7 @@ from os import system as sy
 import os # .path, .getcwd, .listdir
 
 # PREPARE TO LOAD DYNAMIC(ALLY-PATHED) LIBS
-import sys # .path
+import sys # .path, .stdout
 from os import environ
 sys.path.append(environ['PY_LIBS_DIR'])
 
@@ -62,6 +62,7 @@ username = environ['USER']
 
 tput.colorize(fg=USERNAME_HOSTNAME_COLOR, bold=USERNAME_HOSTNAME_BOLD)
 print username, '@',
+sys.stdout.flush()
 
 ##
 # pseudo-hostname (abbreviated via if-then rules)
@@ -81,6 +82,7 @@ if hostname[-len(DOT_STANFORD_DOT_EDU):] == DOT_STANFORD_DOT_EDU:
 
 tput.colorize(fg=USERNAME_HOSTNAME_COLOR, bold=USERNAME_HOSTNAME_BOLD)
 print hostname, ':',
+sys.stdout.flush()
 
 ##
 # pwd. color based on the basename
@@ -116,12 +118,11 @@ print ""
 ##
 
 tput.colorize(fg=DOLLAR_SIGN_COLOR, bold=DOLLAR_SIGN_BOLD)
-print '$ ', # apparently the comma's space is prepended to the token after it as opposed to appended to the token before it
+print '$ '
 
 ##
 # finish by decolorizing
 ##
 
 tput.decolorize()
-
 
