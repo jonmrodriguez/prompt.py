@@ -5,12 +5,18 @@
 prompt.py is to completely replace $PS1 and $PROMPT_COMMAND
 """
 
+# STATIC LIBS
 import hashlib # .sha256
 from os import system as sy
 
+# PREPARE TO LOAD DYNAMIC(ALLY-PATHED) LIBS
+import sys # .path
 from os import environ
 sys.path.append(environ['PY_LIBS_DIR'])
+
+# DYNAMIC LIBS
 import tput # .colorize, .decolorize
+
 
 ###
 # CONSTANTS
