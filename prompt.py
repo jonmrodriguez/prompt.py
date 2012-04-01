@@ -8,6 +8,7 @@ prompt.py is to completely replace $PS1 and $PROMPT_COMMAND
 # STATIC LIBS
 import hashlib # .sha256
 from os import system as sy
+import os # .path, .getcwd, .listdir
 
 # PREPARE TO LOAD DYNAMIC(ALLY-PATHED) LIBS
 import sys # .path
@@ -21,6 +22,8 @@ import tput # .colorize, .decolorize
 ###
 # CONSTANTS
 ###
+
+N_PRECEDING_NEWLINES = 2
 
 USERNAME_HOSTNAME_COLOR = "GREEN"
 USERNAME_HOSTNAME_BOLD = True
@@ -43,6 +46,13 @@ DOLLAR_SIGN_BOLD = True
 ##
 
 tput.decolorize()
+
+##
+# preceeding newlines
+##
+
+for i in range(0, N_PRECEDING_NEWLINES):
+    print ""
 
 ##
 # username
@@ -106,7 +116,7 @@ print ""
 ##
 
 tput.colorize(fg=DOLLAR_SIGN_COLOR, bold=DOLLAR_SIGN_BOLD)
-print '$',
+print '$ ', # apparently the comma's space is prepended to the token after it as opposed to appended to the token before it
 
 ##
 # finish by decolorizing
