@@ -81,8 +81,7 @@ if hostname[-len(DOT_STANFORD_DOT_EDU):] == DOT_STANFORD_DOT_EDU:
     hostname = hostname[0:-len(DOT_STANFORD_DOT_EDU)]
 
 tput.colorize(fg=USERNAME_HOSTNAME_COLOR, bold=USERNAME_HOSTNAME_BOLD)
-print hostname, ':',
-sys.stdout.flush()
+print hostname, ':'
 
 ##
 # pwd. color based on the basename
@@ -114,11 +113,11 @@ for elem in os.listdir(pwd):
 print ""
 
 ##
-# dollar sign and space
+# dollar sign (or some symbol) and space
 ##
 
 tput.colorize(fg=DOLLAR_SIGN_COLOR, bold=DOLLAR_SIGN_BOLD)
-print '$ '
+print '> '
 
 ##
 # finish by decolorizing
