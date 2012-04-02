@@ -25,9 +25,6 @@ import tput # .colorize, .decolorize
 
 N_PRECEDING_NEWLINES = 2
 
-USERNAME_HOSTNAME_COLOR = "YELLOW"
-USERNAME_HOSTNAME_BOLD = True
-
 PWD_COLOR_MODULO = 8 # hash pwd.basename into 0 thru 7 inclusive
 PWD_BOLD = True
 
@@ -36,6 +33,9 @@ LS_DIRS_BOLD = False
 
 DOLLAR_SIGN_COLOR = 53
 DOLLAR_SIGN_BOLD = True
+
+USERNAME_HOSTNAME_COLOR = DOLLAR_SIGN_COLOR
+USERNAME_HOSTNAME_BOLD = True
 
 
 ###
